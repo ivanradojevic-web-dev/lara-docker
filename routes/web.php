@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -17,11 +18,18 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
+    $artists = Http::get('https://itunes.apple.com/search', [
+        'term' => 'underworld',
+        'entity' => 'musicArtist',
+        'limit' => 10,
+    ])->json()['results'];
+
+    //dd($artists);
+
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
+        'artists' => $artists,
     ]);
 });
 

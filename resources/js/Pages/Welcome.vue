@@ -8,13 +8,8 @@ defineProps({
     canRegister: {
         type: Boolean
     },
-    laravelVersion: {
-        type: String,
-        required: true
-    },
-    phpVersion: {
-        type: String,
-        required: true
+    artists: {
+        type: Array
     }
 })
 </script>
@@ -52,7 +47,20 @@ defineProps({
             </div>
         </header>
 
-        <main>MAIN SECTION</main>
+        <main>
+            <form>
+                <label for="search">
+                    <input
+                        id="search"
+                        name="search"
+                        type="search"
+                        class="h-[150px] bg-transparent w-full text-8xl focus:outline-none"
+                        placeholder="Start typing..."
+                        autofocus
+                    />
+                </label>
+            </form>
+        </main>
 
         <footer class="h-24"></footer>
     </div>
