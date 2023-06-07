@@ -9,7 +9,7 @@ class MusicSearchService
     /**
      * Fetch results from iTunes api
      */
-    public function search($searchQuery)
+    public function search(string $searchQuery): array
     {
         $results = [
             'artists' => $this->fetchData('musicArtist', $searchQuery),
@@ -21,7 +21,7 @@ class MusicSearchService
         return $results;
     }
 
-    private function fetchData($entity, $searchQuery)
+    private function fetchData(string $entity, string $searchQuery): array
     {
         $response = Http::get('https://itunes.apple.com/search', [
             'term' => $searchQuery,
