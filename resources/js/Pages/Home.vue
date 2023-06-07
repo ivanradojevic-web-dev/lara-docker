@@ -1,35 +1,8 @@
 <template>
-    <Head title="Welcome" />
+    <Head title="Home" />
 
     <div class="container">
-        <header class="h-24">
-            <div
-                v-if="canLogin"
-                class="sm:fixed sm:top-0 sm:right-0 p-6 text-right"
-            >
-                <Link
-                    v-if="$page.props.auth.user"
-                    :href="route('dashboard')"
-                    class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                    >Dashboard</Link
-                >
-
-                <template v-else>
-                    <Link
-                        :href="route('login')"
-                        class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                        >Log in</Link
-                    >
-
-                    <Link
-                        v-if="canRegister"
-                        :href="route('register')"
-                        class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                        >Register</Link
-                    >
-                </template>
-            </div>
-        </header>
+        <HeaderLayout :canLogin="canLogin" :canRegister="canRegister" />
 
         <MainLayout>
             <form>
@@ -42,6 +15,7 @@
                         class="h-[150px] focus:outline-black bg-transparent w-full text-8xl"
                         placeholder="Start typing..."
                         autofocus
+                        autocomplete="off"
                     />
                 </label>
             </form>
@@ -88,6 +62,7 @@
 import { ref, watch } from 'vue'
 import { debounce } from 'lodash'
 import { Head, Link, router } from '@inertiajs/vue3'
+import HeaderLayout from '@/Layouts/HeaderLayout.vue'
 import MainLayout from '@/Layouts/MainLayout.vue'
 
 defineProps({
