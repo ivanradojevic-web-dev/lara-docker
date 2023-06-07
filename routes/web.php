@@ -26,7 +26,7 @@ Route::get('/', function () {
 
     //dd($artists);
 
-    return Inertia::render('Welcome', [
+    return Inertia::render('Home', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'artists' => $artists,

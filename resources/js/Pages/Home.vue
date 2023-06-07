@@ -1,19 +1,3 @@
-<script setup>
-import { Head, Link } from '@inertiajs/vue3'
-
-defineProps({
-    canLogin: {
-        type: Boolean
-    },
-    canRegister: {
-        type: Boolean
-    },
-    artists: {
-        type: Array
-    }
-})
-</script>
-
 <template>
     <Head title="Welcome" />
 
@@ -47,7 +31,7 @@ defineProps({
             </div>
         </header>
 
-        <main>
+        <MainLayout>
             <form>
                 <label for="search">
                     <input
@@ -60,8 +44,25 @@ defineProps({
                     />
                 </label>
             </form>
-        </main>
+        </MainLayout>
 
         <footer class="h-24"></footer>
     </div>
 </template>
+
+<script setup>
+import { Head, Link } from '@inertiajs/vue3'
+import MainLayout from '@/Layouts/MainLayout.vue'
+
+defineProps({
+    canLogin: {
+        type: Boolean
+    },
+    canRegister: {
+        type: Boolean
+    },
+    artists: {
+        type: Array
+    }
+})
+</script>
