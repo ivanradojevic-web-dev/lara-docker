@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -17,42 +17,11 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/home', function () {
-    $searchQuery = request('search') ?? '';
+Route::get('/', function () {
+    return Redirect::route('home');
+});
 
-    $artists = Http::get('https://itunes.apple.com/search', [
-        'term' => $searchQuery,
-        'entity' => 'musicArtist',
-        'limit' => 10,
-    ])->json()['results'] ?? [];
-
-    $songs = Http::get('https://itunes.apple.com/search', [
-        'term' => $searchQuery,
-        'entity' => 'song',
-        'limit' => 10,
-    ])->json()['results'] ?? [];
-
-    $albums = Http::get('https://itunes.apple.com/search', [
-        'term' => $searchQuery,
-        'entity' => 'album',
-        'limit' => 10,
-    ])->json()['results'] ?? [];
-
-    $videos = Http::get('https://itunes.apple.com/search', [
-        'term' => $searchQuery,
-        'entity' => 'musicVideo',
-        'limit' => 10,
-    ])->json()['results'] ?? [];
-
-    return Inertia::render('Home', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'artists' => $artists,
-        'songs' => $songs,
-        'albums' => $albums,
-        'videos' => $videos,
-    ]);
-})->name('home');
+Route::get('/home', HomeController::class)->name('home');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

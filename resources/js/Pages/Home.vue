@@ -56,7 +56,7 @@
                     </div>
                     <ul v-auto-animate class="mt-6 flex flex-col space-y-2.5">
                         <li
-                            v-for="artist in artists"
+                            v-for="artist in results.artists"
                             :key="artist.artistId"
                             class="flex justify-between"
                         >
@@ -97,7 +97,7 @@ defineProps({
     canRegister: {
         type: Boolean
     },
-    artists: {
+    results: {
         type: Array
     }
 })
