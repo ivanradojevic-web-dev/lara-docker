@@ -22,7 +22,7 @@
                 </form>
             </section>
 
-            <SearchSection :results="results" />
+            <ResultsSection :results="results" />
         </MainLayout>
 
         <footer class="h-24"></footer>
@@ -35,7 +35,7 @@ import { debounce } from 'lodash'
 import { Head, router } from '@inertiajs/vue3'
 import HeaderLayout from '@/Layouts/HeaderLayout.vue'
 import MainLayout from '@/Layouts/MainLayout.vue'
-import SearchSection from '@/Components/SearchSection.vue'
+import ResultsSection from '@/Components/ResultsSection.vue'
 
 defineProps({
     canLogin: {
