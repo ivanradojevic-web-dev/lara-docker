@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SongController;
+use App\Http\Controllers\VideoController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -25,6 +28,12 @@ Route::get('/', function () {
 Route::get('/home', HomeController::class)->name('home');
 
 Route::get('artists/{id}', [ArtistController::class, 'show'])->name('artists.show');
+
+Route::get('songs/{id}', [SongController::class, 'show'])->name('songs.show');
+
+Route::get('albums/{id}', [AlbumController::class, 'show'])->name('albums.show');
+
+Route::get('videos/{id}', [VideoController::class, 'show'])->name('videos.show');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

@@ -2,19 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Http;
+use App\Services\FindPageService;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class ArtistController extends Controller
 {
-    public function show($id)
+    public function show($id, FindPageService $findPageService): Response
     {
-        $response = Http::get('https://itunes.apple.com/lookup', [
-            'id' => $id,
-        ]);
-
-        dd($response->json()['results'][0]);
-
-        $artist = $response->json()['results'][0];
+        $artist = $findPageService->lookupById($id);
 
         return Inertia::render('Artist/Show', [
             'artist' => $artist,

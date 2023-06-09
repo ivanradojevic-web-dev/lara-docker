@@ -28,9 +28,12 @@
                         :src="song.artworkUrl60"
                         class="rounded-full w-6 h-6"
                     />
-                    <span class="text-2xl leading-none">{{
-                        song.collectionName
-                    }}</span>
+                    <Link
+                        :href="route('songs.show', { id: song.trackId })"
+                        class="text-2xl leading-none hover:text-red-500"
+                    >
+                        {{ song.trackName }}
+                    </Link>
                 </div>
                 <div class="flex-none">
                     <span class="text-sm text-gray-500">
