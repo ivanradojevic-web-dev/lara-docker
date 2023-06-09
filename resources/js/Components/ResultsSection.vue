@@ -6,7 +6,10 @@
                 :key="artist.artistId"
                 class="flex justify-between"
             >
-                <Link href="#" class="text-2xl leading-none hover:text-red-500">
+                <Link
+                    :href="route('artists.show', { id: artist.artistId })"
+                    class="text-2xl leading-none hover:text-red-500"
+                >
                     {{ artist.artistName }}
                 </Link>
                 <span class="text-sm text-gray-500">

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -22,6 +23,8 @@ Route::get('/', function () {
 });
 
 Route::get('/home', HomeController::class)->name('home');
+
+Route::get('artists/{id}', [ArtistController::class, 'show'])->name('artists.show');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

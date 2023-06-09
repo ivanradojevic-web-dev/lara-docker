@@ -16,6 +16,7 @@ class HomeController extends Controller
     public function __invoke(Request $request, MusicSearchService $musicSearchService): Response
     {
         $searchQuery = $request->search ?? '';
+
         $results = $musicSearchService->search($searchQuery);
 
         return Inertia::render('Home', [
